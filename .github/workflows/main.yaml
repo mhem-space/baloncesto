@@ -1,0 +1,29 @@
+name: CI
+on: push
+jobs:
+ build:
+ runs-on: ubuntu-latest
+ steps:
+ - name: pruebas-unitarias
+ run: echo "pruebas-unitarias"
+ - name: empaquetar
+ run: echo "empaquetar"
+ test:
+ needs: build
+ runs-on: ubuntu-latest
+ steps:
+ - name: pruebas-funcionales
+ run: echo "pruebas-funcionales"
+
+ qa:
+ needs: test
+ runs-on: ubuntu-latest
+ steps:
+ - name: calidad-codigo
+ run: echo "calidad-codigo"
+ deploy:
+ needs: qa
+ runs-on: ubuntu-latest
+ steps:
+ - name: despliegue
+ run: echo "despliegue"
