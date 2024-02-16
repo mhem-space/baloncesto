@@ -10,7 +10,7 @@ public class ModeloDatosTest {
         ModeloDatos instance = new ModeloDatos();
         boolean expResult = false;
         boolean result = instance.existeJugador(nombre);
-        // assertEquals(expResult, result);
-        fail("Fallo forzado.");
+        assertEquals(expResult, result);
+        //fail("Fallo forzado.");
     }
 }
