@@ -15,10 +15,27 @@ jobs:
 
   test:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
-      - name: pruebas-funcionales
-        run: echo "pruebas-funcionales"
+      - name: descargar repostorio
+        uses: actions/checkout@v3
+      - name: instalar aplicación en Tomcat
+        run: |
+          mvn package -DskipTests=true
+          cp -r target/Baloncesto /usr/local/tomcat/webapps
+      - name: preparar base de datos de prueba
+        run: |
+          mysql -u root < db/baloncesto.sql
+          export DATABASE_HOST="jdbc:mysql://localhost"
+          export DATABASE_PORT="3306"
+          export DATABASE_NAME="baloncesto"
+          export DATABASE_USER="usuario"
+          export DATABASE_PASS="clave"
+          sh /usr/local/tomcat/bin/catalina.sh stop
+          sh /usr/local/tomcat/bin/catalina.sh start
+      - name: realizar pruebas funcionales
+        run: |
+          mvn failsafe:integration-test failsafe:verify
 
   qa:
     needs: test
