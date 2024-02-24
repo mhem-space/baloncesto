@@ -2,3 +2,8 @@ body {
     color: white;
     background-color: darkblue;
 }
+
+.resultado {
+    color: yellow;
+    background-color: darkred;
+}
