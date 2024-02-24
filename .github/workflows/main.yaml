@@ -49,6 +49,16 @@ jobs:
   deploy:
     needs: qa
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
     steps:
-      - name: despliegue
-        run: echo "despliegue"
+      - name: descargar repostorio
+        uses: actions/checkout@v3
+      - name: Crear el archivo .war
+        run: |
+          mvn package -DskipTests=true
+      - name: Desplegar en Azure
+        uses: Azure/webapps-deploy@v2
+        with:
+          app-name: baloncesto-hilera
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: target/*.war
