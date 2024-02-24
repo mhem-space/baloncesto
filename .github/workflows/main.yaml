@@ -59,6 +59,6 @@ jobs:
       - name: Desplegar en Azure
         uses: Azure/webapps-deploy@v2
         with:
-          app-name: baloncesto-hilera
+          app-name: baloncesto-majjaoui
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: target/*.war
