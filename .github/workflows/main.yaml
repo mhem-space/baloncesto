@@ -46,8 +46,25 @@ jobs:
         run: |
           mvn sonar:sonar -Dsonar.host.url=http://sonarqubeIC:9000 -Dsonar.qualitygate.wait=true -Dsonar.login=admin -Dsonar.password=admin
 
-  deploy:
+  stage:
     needs: qa
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: descargar repostorio
+        uses: actions/checkout@v3
+      - name: Crear el archivo .war
+        run: |
+          mvn package -DskipTests=true
+      - name: Desplegar en Azure
+        uses: Azure/webapps-deploy@v2
+        with:
+          app-name: pre-baloncesto-majjaoui
+          publish-profile: ${{ secrets.PRE_AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: target/*.war
+
+  deploy:
+    needs: stage
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
     steps:
