@@ -35,7 +35,7 @@ public class ModeloDatosTest {
 
         instance.abrirConexion(); // Se llama al método sobreescrito que establece la conexión simulada
 
-        String nombreJugador = "JugadorPrueba";
+        String nombreJugador = "Rudy";
         // Ejecutar el método a probar
         instance.actualizarJugador(nombreJugador);
 
