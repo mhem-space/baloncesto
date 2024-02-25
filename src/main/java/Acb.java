@@ -1,5 +1,7 @@
 
 import java.io.*;
+import java.net.URLEncoder;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -18,7 +20,7 @@ public class Acb extends HttpServlet {
         if (req.getParameter("resetVotes") != null) {
             bd.resetearVotos();
             // Crear una cookie para indicar que se han eliminado los votos.
-            Cookie mensajeCookie = new Cookie("mensajeVotos", "Todos los votos han sido eliminados.");
+            Cookie mensajeCookie = new Cookie("mensajeVotos", URLEncoder.encode("Todos los votos han sido eliminados.", "UTF-8"));
             mensajeCookie.setMaxAge(60); // Expira en 60 segundos
             res.addCookie(mensajeCookie);
 
