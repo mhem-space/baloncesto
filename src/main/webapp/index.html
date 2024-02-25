@@ -3,33 +3,68 @@ Document : index.html
 Author : Roberto Barchino (aplicacion original)
 -->
 <html>
-    <head>
-        <link href="estilos.css" rel="stylesheet" type="text/css" />
-        <title>Votacion mejor jugador liga ACB</title>
-    </head>
-    <body>
-    <center><H1>Votaci&oacute;n al mejor jugador de la liga ACB</H1></center><hr>
+  <head>
+    <link href="estilos.css" rel="stylesheet" type="text/css" />
+    <title>Votacion mejor jugador liga ACB</title>
+  </head>
+  <body>
+    <center><h1>Votaci&oacute;n al mejor jugador de la liga ACB</h1></center>
+    <hr />
     <form action="Acb" method="POST">
-        <p align="left">Nombre del Visitante: <input type="text" size="20"
-                                                     name="txtNombre">
-            eMail: <input type="text" size="20" name="txtMail"></p> REAL MADRID:<br>
+      <p style="text-align: left;">
+        Nombre del Visitante:
+        <input type="text" size="20" name="txtNombre" /> eMail:
+        <input type="text" size="20" name="txtMail" />
+      </p>
+      REAL MADRID:<br />
 
-        <img src="Llull.jpg" width="100" height="67" alt="Llul"/>
-        <p align="left"><input type="radio" name="R1" value="Llull">Llull</p>
+      <img src="Llull.jpg" width="100" height="67" alt="Llul" />
+      <p style="text-align: left;"><input type="radio" name="R1" value="Llull" />Llull</p>
 
-        <img src="Rudy.jpg" width="100" height="67" alt="Rudy"/>
-        <p align="left"><input type="radio" name="R1" value="Rudy">Rudy</p>
+      <img src="Rudy.jpg" width="100" height="67" alt="Rudy" />
+      <p style="text-align: left;"><input type="radio" name="R1" value="Rudy" />Rudy</p>
 
-        <img src="Tavares.jpg" width="100" height="67" alt="Tavares"/>
-        <p align="left"><input type="radio" name="R1" value="Tavares">Tavares</p>
+      <img src="Tavares.jpg" width="100" height="67" alt="Tavares" />
+      <p style="text-align: left;">
+        <input type="radio" name="R1" value="Tavares" />Tavares
+      </p>
 
-        <br>
-        <p align="left"><input type="radio" name="R1" value="Otros">Otro
-            <input type="text" size="20" name="txtOtros"></p>
-        <p align="left">
-            <input type="submit" name="B1" value="Votar">
-            <input type="reset" name="B2" value="Reset"></p>
+      <br />
+      <p style="text-align: left;">
+        <input type="radio" name="R1" value="Otros" />Otro
+        <input type="text" size="20" name="txtOtros" />
+      </p>
+      <p style="text-align: left;">
+        <input type="submit" name="B1" value="Votar" />
+        <input type="reset" name="B2" value="Reset" />
+        <input type="submit" name="resetVotes" value="Poner votos a cero" />
+      </p>
     </form>
-</body>
-</html>
+  </body>
+  <script>
+    window.onload = function () {
+      var mensaje = getCookie("mensajeVotos");
+      if (mensaje != "") {
+        alert(mensaje.replace(/\+/g, ' '));
+        // Eliminar la cookie después de mostrar el mensaje
+        document.cookie = "mensajeVotos=; max-age=0";
+      }
+    };
 
+    function getCookie(nombre) {
+      var name = nombre + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(";");
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == " ") {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+  </script>
+</html>
