@@ -5,7 +5,7 @@
     <title>Votos</title>
     <link href="estilos.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<body class="verVotos">
     <h1>Votos de los jugadores</h1>
     <table>
         <tr>
