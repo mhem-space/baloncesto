@@ -12,6 +12,6 @@
     </p>
     <br />
     <br />
-    <a href="index.html"> Ir al comienzo</a>
+    <a id="home" href="index.html"> Ir al comienzo</a>
   </body>
 </html>

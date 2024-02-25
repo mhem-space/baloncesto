@@ -15,7 +15,7 @@
         <% for (int i = 0; i < ((List<String>) session.getAttribute("nombres")).size(); i++) { %>
         <tr>
             <td><%= ((List<String>) session.getAttribute("nombres")).get(i)%></td>
-            <td syle="text-align:center;"><%= ((List<Integer>) session.getAttribute("votos")).get(i) %></td>
+            <td style="text-align:center;"><%= ((List<Integer>) session.getAttribute("votos")).get(i) %></td>
         </tr>
         <% } %>
     </table>
