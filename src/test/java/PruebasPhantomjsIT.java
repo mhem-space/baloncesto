@@ -118,7 +118,7 @@ public class PruebasPhantomjsIT {
         driver.findElement(By.id("ver")).click();
 
         // Comprueba que el nuevo jugador aparece con 1 voto
-        boolean isPresent = driver.findElements(By.xpath("//td[contains(text(), 'Jugador Prueba')]")).size() > 0;
+        boolean isPresent = driver.findElements(By.xpath("//td[contains(text(), 'JugadorPrueba')]")).size() > 0;
         assertTrue(isPresent, "El jugador no se encuentra o no tiene el voto esperado.");
 
         // Cerrar el navegador
