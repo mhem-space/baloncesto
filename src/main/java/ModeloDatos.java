@@ -77,6 +77,18 @@ public class ModeloDatos {
         }
     }
 
+    public void resetearVotos() {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("UPDATE Jugadores SET votos=0");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            // No modifica la tabla
+            System.out.println("Error al resetear votos: "+ e.getMessage());
+        }
+    }
+
     public void cerrarConexion() {
         try {
             con.close();
