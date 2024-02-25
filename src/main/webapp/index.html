@@ -45,7 +45,7 @@ Author : Roberto Barchino (aplicacion original)
     window.onload = function () {
       var mensaje = getCookie("mensajeVotos");
       if (mensaje != "") {
-        alert(mensaje);
+        alert(mensaje.replace(/\+/g, ' '));
         // Eliminar la cookie después de mostrar el mensaje
         document.cookie = "mensajeVotos=; max-age=0";
       }
