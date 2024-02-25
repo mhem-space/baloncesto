@@ -7,7 +7,7 @@
 </head>
 <body class="verVotos">
     <h1>Votos de los jugadores</h1>
-    <table>
+    <table id="tablaDeVotos">
         <tr>
             <th>Nombre del jugador</th>
             <th>N&uacute;mero de votos</th>
@@ -19,6 +19,6 @@
         </tr>
         <% } %>
     </table>
-    <a href="index.html"> Ir a la página principal</a>
+    <a href="index.html"> Ir a la p&aacute;gina principal</a>
 </body>
 </html>
