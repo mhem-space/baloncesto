@@ -1,10 +1,12 @@
 import java.sql.*;
+import java.util.logging.Logger;
 
 public class ModeloDatos {
 
     private Connection con;
     private Statement set;
     private ResultSet rs;
+    Logger logger = Logger.getLogger(getClass().getName());
 
     public void abrirConexion() {
 
@@ -23,9 +25,12 @@ public class ModeloDatos {
 
         } catch (Exception e) {
             // No se ha conectado
-            System.out.println("No se ha podido conectar");
-            System.out.println("El error es: " + e.getMessage());
+            logger.info("No se ha podido conectar: "+ e.getMessage());
         }
+    }
+
+    public void setConexion(Connection con) {
+        this.con = con;
     }
 
     public boolean existeJugador(String nombre) {
@@ -45,8 +50,7 @@ public class ModeloDatos {
             set.close();
         } catch (Exception e) {
             // No lee de la tabla
-            System.out.println("No lee de la tabla");
-            System.out.println("El error es: " + e.getMessage());
+            logger.info("No lee de la tabla: "+ e.getMessage());
         }
         return (existe);
     }
@@ -59,8 +63,7 @@ public class ModeloDatos {
             set.close();
         } catch (Exception e) {
             // No modifica la tabla
-            System.out.println("No modifica la tabla");
-            System.out.println("El error es: " + e.getMessage());
+            logger.info("No modifica la tabla: "+ e.getMessage());
         }
     }
 
@@ -72,8 +75,19 @@ public class ModeloDatos {
             set.close();
         } catch (Exception e) {
             // No inserta en la tabla
-            System.out.println("No inserta en la tabla");
-            System.out.println("El error es: " + e.getMessage());
+            logger.info("No inserta en la tabla: "+ e.getMessage());
+        }
+    }
+
+    public void resetearVotos() {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("UPDATE Jugadores SET votos=0");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            // No modifica la tabla
+            logger.info("Error al resetear votos: "+ e.getMessage());
         }
     }
 
@@ -81,7 +95,7 @@ public class ModeloDatos {
         try {
             con.close();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
     }
 
