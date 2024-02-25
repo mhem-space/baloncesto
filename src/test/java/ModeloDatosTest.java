@@ -5,10 +5,10 @@ import static org.mockito.Mockito.*;
 import java.sql.Connection;
 import java.sql.Statement;
 
-public class ModeloDatosTest {
+class ModeloDatosTest {
 
     @Test
-    public void testExisteJugador() {
+    void testExisteJugador() {
         System.out.println("Prueba de existeJugador");
         String nombre = "";
         ModeloDatos instance = new ModeloDatos();
@@ -19,7 +19,7 @@ public class ModeloDatosTest {
     }
 
     @Test
-    public void testActualizarJugador() throws Exception {
+    void testActualizarJugador() throws Exception {
         System.out.println("Prueba de actualizarJugador");
 
         // Simular las dependencias de la base de datos

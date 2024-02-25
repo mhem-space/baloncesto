@@ -1,10 +1,12 @@
 import java.sql.*;
+import java.util.logging.Logger;
 
 public class ModeloDatos {
 
     private Connection con;
     private Statement set;
     private ResultSet rs;
+    Logger logger = Logger.getLogger(getClass().getName());
 
     public void abrirConexion() {
 
@@ -23,7 +25,7 @@ public class ModeloDatos {
 
         } catch (Exception e) {
             // No se ha conectado
-            System.out.println("No se ha podido conectar: "+ e.getMessage());
+            logger.info("No se ha podido conectar: "+ e.getMessage());
         }
     }
 
@@ -48,7 +50,7 @@ public class ModeloDatos {
             set.close();
         } catch (Exception e) {
             // No lee de la tabla
-            System.out.println("No lee de la tabla: "+ e.getMessage());
+            logger.info("No lee de la tabla: "+ e.getMessage());
         }
         return (existe);
     }
@@ -61,7 +63,7 @@ public class ModeloDatos {
             set.close();
         } catch (Exception e) {
             // No modifica la tabla
-            System.out.println("No modifica la tabla: "+ e.getMessage());
+            logger.info("No modifica la tabla: "+ e.getMessage());
         }
     }
 
@@ -73,7 +75,7 @@ public class ModeloDatos {
             set.close();
         } catch (Exception e) {
             // No inserta en la tabla
-            System.out.println("No inserta en la tabla: "+ e.getMessage());
+            logger.info("No inserta en la tabla: "+ e.getMessage());
         }
     }
 
@@ -85,7 +87,7 @@ public class ModeloDatos {
             set.close();
         } catch (Exception e) {
             // No modifica la tabla
-            System.out.println("Error al resetear votos: "+ e.getMessage());
+            logger.info("Error al resetear votos: "+ e.getMessage());
         }
     }
 
@@ -93,7 +95,7 @@ public class ModeloDatos {
         try {
             con.close();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
     }
 
