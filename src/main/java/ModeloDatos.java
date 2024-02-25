@@ -1,5 +1,9 @@
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ModeloDatos {
 
@@ -25,7 +29,7 @@ public class ModeloDatos {
 
         } catch (Exception e) {
             // No se ha conectado
-            logger.info("No se ha podido conectar: "+ e.getMessage());
+            logger.info("No se ha podido conectar: " + e.getMessage());
         }
     }
 
@@ -50,7 +54,7 @@ public class ModeloDatos {
             set.close();
         } catch (Exception e) {
             // No lee de la tabla
-            logger.info("No lee de la tabla: "+ e.getMessage());
+            logger.info("No lee de la tabla: " + e.getMessage());
         }
         return (existe);
     }
@@ -63,7 +67,7 @@ public class ModeloDatos {
             set.close();
         } catch (Exception e) {
             // No modifica la tabla
-            logger.info("No modifica la tabla: "+ e.getMessage());
+            logger.info("No modifica la tabla: " + e.getMessage());
         }
     }
 
@@ -75,7 +79,7 @@ public class ModeloDatos {
             set.close();
         } catch (Exception e) {
             // No inserta en la tabla
-            logger.info("No inserta en la tabla: "+ e.getMessage());
+            logger.info("No inserta en la tabla: " + e.getMessage());
         }
     }
 
@@ -87,8 +91,22 @@ public class ModeloDatos {
             set.close();
         } catch (Exception e) {
             // No modifica la tabla
-            logger.info("Error al resetear votos: "+ e.getMessage());
+            logger.info("Error al resetear votos: " + e.getMessage());
         }
+    }
+
+    public List<Jugador> getJugadores() {
+        List<Jugador> jugadores = new ArrayList<>();
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM Jugadores");
+            while (rs.next()) {
+                jugadores.add(new Jugador(rs.getInt("id"),rs.getString("nombre"), rs.getInt("votos")));
+            }
+        } catch (Exception e) {
+            logger.info("Error al obtener jugadores: " + e.getMessage());
+        }
+        return jugadores;
     }
 
     public void cerrarConexion() {
